@@ -1,8 +1,8 @@
 # 📊 College Event Management System - Implementation Status
 
 **Last Updated**: March 15, 2026  
-**Project Status**: Sprint 3-4 Complete (Backend 85% Done)  
-**Overall Progress**: 85%
+**Project Status**: Sprint 3-4 Complete (Backend 90% Done - UserController Added)  
+**Overall Progress**: 90%
 
 ---
 
@@ -11,8 +11,8 @@
 College Event Management System is a web application for managing academic events. Built with **Spring Boot 3.x + React 18+**, it provides event creation, student registration, attendance tracking, and admin management.
 
 **Current Status**: 
-- ✅ **Backend**: Fully implemented (22 endpoints, complete API)
-- ✅ **API Documentation**: Comprehensive (7 docs, 100+ test cases)
+- ✅ **Backend**: Fully implemented (26 endpoints, user management added)
+- ✅ **API Documentation**: Comprehensive (8 docs, 100+ test cases)
 - ⏳ **Frontend**: Ready to start (React setup complete)
 - ⏳ **Testing**: Manual testing ready, unit tests pending
 
@@ -131,10 +131,11 @@ Registrations (PK: id)
 
 ### API Layer
 ```
-22 Endpoints
+26 Endpoints (was 22)
 ├─ 5 Auth endpoints (/auth/*)
 ├─ 10 Event endpoints (/events/*)
-└─ 7 Registration endpoints (/registrations/*)
+├─ 7 Registration endpoints (/registrations/*)
+└─ 4 User management endpoints (/api/users/*) - NEW
 
 Response Format: ApiResponse<T>
 {
@@ -164,12 +165,14 @@ Error Handling: Global exception mapping
 - [x] CORS configuration
 
 ### API
-- [x] 22 endpoints implemented
+- [x] 26 endpoints implemented (was 22)
+- [x] 4 Controllers: Auth, Event, Registration, User
 - [x] All CRUD operations
 - [x] Search & filtering
 - [x] Event approval workflow
 - [x] Capacity checking
 - [x] Attendance tracking
+- [x] User management (admin-only)
 - [x] Role-based access control
 - [x] Input validation
 - [x] Error responses
@@ -199,11 +202,11 @@ Error Handling: Global exception mapping
 
 | Category | Completed | Total | % |
 |----------|-----------|-------|---|
-| **Backend Java Files** | 31 | 31 | 100% |
-| **API Endpoints** | 22 | 22 | 100% |
+| **Backend Java Files** | 34 | 34 | 100% |
+| **API Endpoints** | 26 | 26 | 100% |
 | **Database Tables** | 3 | 3 | 100% |
 | **Services** | 4 | 4 | 100% |
-| **Controllers** | 3 | 3 | 100% |
+| **Controllers** | 4 | 4 | 100% |
 | **Documentation Files** | 21 | 21 | 100% |
 | **Test Cases** | 100+ | 100+ | 100% |
 | **Code Coverage** | TBD | 80% | TBD |

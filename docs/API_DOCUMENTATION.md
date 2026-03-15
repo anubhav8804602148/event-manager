@@ -1,7 +1,7 @@
 # 📡 College Event Management System - API Documentation
 
-**Version**: 1.0.0  
-**Status**: Sprint 3-4 Complete  
+**Version**: 1.0.1  
+**Status**: Sprint 3-4 Complete (26 Endpoints)
 **Base URL**: `http://localhost:8080/api`
 
 ---
@@ -546,6 +546,178 @@ Response (200 OK):
 | DELETE /registrations/{id} | ✓ | ✗ |
 | GET /registrations/event/{id} | ✗ | ✓ |
 | POST /registrations/{id}/attendance | ✗ | ✓ |
+
+---
+
+### 👥 User Management Endpoints (Admin Only)
+
+#### 1. Get All Users
+```
+GET /api/users?page=0&size=20
+Authorization: Bearer <adminToken>
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "Users fetched successfully",
+  "data": {
+    "content": [
+      {
+        "id": 1,
+        "email": "admin@college.edu",
+        "firstName": "Admin",
+        "lastName": "User",
+        "role": "ADMIN",
+        "accountStatus": "ACTIVE"
+      }
+    ],
+    "totalElements": 50,
+    "totalPages": 3,
+    "currentPage": 0
+  },
+  "statusCode": 200
+}
+```
+
+#### 2. Get User by ID
+```
+GET /api/users/{userId}
+Authorization: Bearer <adminToken>
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "User fetched successfully",
+  "data": {
+    "id": 3,
+    "email": "student@college.edu",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "1234567890",
+    "department": "Computer Science",
+    "role": "STUDENT",
+    "accountStatus": "ACTIVE"
+  },
+  "statusCode": 200
+}
+```
+
+#### 3. Get Users by Role
+```
+GET /api/users/role/{role}?page=0&size=20
+Authorization: Bearer <adminToken>
+
+Path Parameters:
+- role: STUDENT | ADMIN
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "Users fetched successfully",
+  "data": {
+    "content": [...],
+    "totalElements": 150,
+    "totalPages": 8
+  },
+  "statusCode": 200
+}
+```
+
+#### 4. Search Users
+```
+GET /api/users/search?keyword=john&page=0&size=20
+Authorization: Bearer <adminToken>
+
+Query Parameters:
+- keyword: Search term (matches firstName, lastName, email)
+- page: Page number (default 0)
+- size: Page size (default 20)
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "Users found successfully",
+  "data": {
+    "content": [...],
+    "totalElements": 5,
+    "totalPages": 1
+  },
+  "statusCode": 200
+}
+```
+
+#### 5. Count Users by Role
+```
+GET /api/users/count/role/{role}
+Authorization: Bearer <adminToken>
+
+Path Parameters:
+- role: STUDENT | ADMIN
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "User count retrieved successfully",
+  "data": 145,
+  "statusCode": 200
+}
+```
+
+#### 6. Get Total User Count
+```
+GET /api/users/count/total
+Authorization: Bearer <adminToken>
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "Total user count retrieved successfully",
+  "data": 162,
+  "statusCode": 200
+}
+```
+
+#### 7. Lock User Account
+```
+POST /api/users/{userId}/lock
+Authorization: Bearer <adminToken>
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "User account locked successfully",
+  "data": "Account locked for user: 3",
+  "statusCode": 200
+}
+```
+
+#### 8. Unlock User Account
+```
+POST /api/users/{userId}/unlock
+Authorization: Bearer <adminToken>
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "User account unlocked successfully",
+  "data": "Account unlocked for user: 3",
+  "statusCode": 200
+}
+```
+
+#### 9. Delete User
+```
+DELETE /api/users/{userId}
+Authorization: Bearer <adminToken>
+
+Response (200 OK):
+{
+  "success": true,
+  "message": "User deleted successfully",
+  "data": "User removed: 3",
+  "statusCode": 200
+}
+```
 
 ---
 

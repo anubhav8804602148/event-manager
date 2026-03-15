@@ -51,7 +51,23 @@
 
 ---
 
-## 🔑 Sample Requests
+## � User Management (10 endpoints - NEW)
+
+| Method | Endpoint | Purpose | Role | Query/Params |
+|--------|----------|---------|------|-------|
+| GET | `/users` | List all users | ADMIN | `page`, `size`, `sort` |
+| GET | `/users/{id}` | Get user by ID | ADMIN/SELF | - |
+| GET | `/users/role/{role}` | Users by role | ADMIN | `page`, `size` |
+| GET | `/users/search` | Search users | ADMIN | `keyword`, `page`, `size` |
+| GET | `/users/count/role/{role}` | Count by role | ADMIN | - |
+| GET | `/users/count/total` | Total user count | ADMIN | - |
+| POST | `/users/{id}/lock` | Lock account | ADMIN | - |
+| POST | `/users/{id}/unlock` | Unlock account | ADMIN | - |
+| DELETE | `/users/{id}` | Delete user | ADMIN | - |
+
+---
+
+## �🔑 Sample Requests
 
 ### 1. Login
 ```bash
@@ -183,4 +199,4 @@ curl "http://localhost:8080/api/registrations?page=0&size=10" \
 
 ---
 
-**Version**: 1.0.0 | **Last Updated**: March 15, 2026 | **Status**: Sprint 3-4 ✅
+**Version**: 1.0.1 | **Last Updated**: March 15, 2026 | **Status**: Sprint 3-4 ✅ (26 Endpoints)
