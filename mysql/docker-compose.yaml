@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  event_manager_db:
+    image: mysql:8.3 # Use a valid, supported tag from Docker Hub
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: anubhav # Set a strong root password
+      MYSQL_DATABASE: event_manager # Optional: Create a default database
+      MYSQL_USER: anubhav         # Optional: Create a default user
+      MYSQL_PASSWORD: anubhav # Optional: Set the user's password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql # Persist data across container restarts
+
+volumes:
+  db_data:
+    driver: local
