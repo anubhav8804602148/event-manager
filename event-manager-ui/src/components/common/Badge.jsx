@@ -6,6 +6,11 @@ export const Badge = ({ children, variant = 'primary', className = '' }) => {
 };
 
 export const StatusBadge = ({ status }) => {
+  // Handle undefined status
+  if (!status) {
+    return null;
+  }
+
   const statusVariants = {
     'PENDING': 'warning',
     'APPROVED': 'success',

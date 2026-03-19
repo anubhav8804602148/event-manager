@@ -61,6 +61,14 @@ public class EventService {
         return eventRepository.findByStatus(EventStatus.APPROVED, pageable);
     }
 
+    // Get all events for admin with optional status filter
+    public Page<Event> getAllEventsForAdmin(EventStatus status, Pageable pageable) {
+        if (status != null) {
+            return eventRepository.findByStatus(status, pageable);
+        }
+        return eventRepository.findAll(pageable);
+    }
+
     // Get all events by organizer
     public List<Event> getEventsByOrganizer(Long organizerId) {
         return eventRepository.findByOrganizerId(organizerId);

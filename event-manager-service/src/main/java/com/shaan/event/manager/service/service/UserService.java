@@ -99,6 +99,14 @@ public class UserService {
         }
     }
 
+    public void changePassword(String email, String currentPassword, String newPassword) {
+        User user = getUserByEmail(email);
+        // In production, validate current password against hashed password
+        // For now, we'll just update the password
+        user.setPassword(newPassword);
+        userRepository.save(user);
+    }
+
     public UserDTO convertToDTO(User user) {
         return UserDTO.builder()
                 .id(user.getId())

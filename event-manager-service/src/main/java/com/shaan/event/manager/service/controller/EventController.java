@@ -3,6 +3,7 @@ package com.shaan.event.manager.service.controller;
 import com.shaan.event.manager.service.dto.ApiResponse;
 import com.shaan.event.manager.service.dto.EventDTO;
 import com.shaan.event.manager.service.entity.Event;
+import com.shaan.event.manager.service.entity.EventStatus;
 import com.shaan.event.manager.service.service.EventService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -44,6 +45,24 @@ public class EventController {
     @GetMapping
     public ResponseEntity<ApiResponse<Object>> getAllApprovedEvents(Pageable pageable) {
         Page<Event> events = eventService.getAllApprovedEvents(pageable);
+        return ResponseEntity.ok(ApiResponse.success("Events fetched successfully", events.map(eventService::convertToDTO), 200));
+    }
+
+    @GetMapping("/admin/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ApiResponse<Object>> getAllEventsForAdmin(
+            @RequestParam(required = false) String status,
+            Pageable pageable) {
+        EventStatus eventStatus = null;
+        if (status != null && !status.isEmpty()) {
+            try {
+                eventStatus = EventStatus.valueOf(status.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest()
+                        .body(ApiResponse.error("Invalid status: " + status, null, 400));
+            }
+        }
+        Page<Event> events = eventService.getAllEventsForAdmin(eventStatus, pageable);
         return ResponseEntity.ok(ApiResponse.success("Events fetched successfully", events.map(eventService::convertToDTO), 200));
     }
 

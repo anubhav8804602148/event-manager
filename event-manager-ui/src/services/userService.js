@@ -20,11 +20,11 @@ export const userService = {
   },
 
   // Get all users (admin only)
-  getAllUsers: (page = 0, pageSize = 10, params = {}) => {
+  getAllUsers: (page = 0, size = 10, params = {}) => {
     return api.get('/users', {
       params: {
         page,
-        pageSize,
+        size,
         ...params
       }
     });
@@ -40,17 +40,10 @@ export const userService = {
     return api.put(`/users/${id}/status`, { enabled });
   },
 
-  // Get user's login history (admin only)
-  getUserLoginHistory: (id, page = 0, pageSize = 10) => {
-    return api.get(`/users/${id}/login-history`, {
-      params: { page, pageSize }
-    });
-  },
-
   // Search users (admin only)
-  searchUsers: (query, page = 0, pageSize = 10) => {
+  searchUsers: (keyword, page = 0, size = 10) => {
     return api.get('/users/search', {
-      params: { q: query, page, pageSize }
+      params: { keyword, page, size }
     });
   }
 };

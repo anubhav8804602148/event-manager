@@ -3,7 +3,9 @@ package com.shaan.event.manager.service.controller;
 import com.shaan.event.manager.service.dto.ApiResponse;
 import com.shaan.event.manager.service.entity.AttendanceStatus;
 import com.shaan.event.manager.service.entity.Registration;
+import com.shaan.event.manager.service.entity.User;
 import com.shaan.event.manager.service.service.RegistrationService;
+import com.shaan.event.manager.service.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -17,9 +19,11 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173"})
 public class RegistrationController {
     private final RegistrationService registrationService;
+    private final UserService userService;
 
-    public RegistrationController(RegistrationService registrationService) {
+    public RegistrationController(RegistrationService registrationService, UserService userService) {
         this.registrationService = registrationService;
+        this.userService = userService;
     }
 
     @PostMapping
@@ -42,11 +46,11 @@ public class RegistrationController {
     @GetMapping
     @PreAuthorize("hasRole('STUDENT')")
     public ResponseEntity<ApiResponse<Object>> getMyRegistrations(Authentication authentication, Pageable pageable) {
-        // Get student's user ID from UserService
         String studentEmail = authentication.getName();
-        // This would require getting the user ID, we'll use a simplified approach
-        // In production, you'd have a utility method to get authenticated user
-        return ResponseEntity.ok(ApiResponse.success("Registrations fetched", "Implement with user ID lookup", 200));
+        User student = userService.getUserByEmail(studentEmail);
+        Page<Registration> registrations = registrationService.getStudentRegistrations(student.getId(), pageable);
+        return ResponseEntity.ok(ApiResponse.success("My registrations fetched successfully", 
+                registrations.map(registrationService::convertToDTO), 200));
     }
 
     @DeleteMapping("/{id}")

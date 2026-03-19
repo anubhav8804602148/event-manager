@@ -29,13 +29,13 @@ import './styles/variables.css';
 import './styles/responsive.css';
 import './App.css';
 
-function AppLayout({ children, isAdmin, currentPage, onLogout }) {
+function AppLayout({ children, isAdmin, currentPage, onLogout, user }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="app-layout">
       <Navbar
-        user={undefined}
+        user={user}
         onLogout={onLogout}
         isAdmin={isAdmin}
       />
@@ -80,6 +80,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout
+                user={user}
                 isAdmin={false}
                 currentPage="/dashboard"
                 onLogout={handleLogout}
@@ -94,6 +95,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout
+                user={user}
                 isAdmin={false}
                 currentPage="/events"
                 onLogout={handleLogout}
@@ -108,6 +110,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout
+                user={user}
                 isAdmin={false}
                 currentPage="/events"
                 onLogout={handleLogout}
@@ -122,6 +125,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout
+                user={user}
                 isAdmin={false}
                 currentPage="/my-registrations"
                 onLogout={handleLogout}
@@ -136,6 +140,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout
+                user={user}
                 isAdmin={false}
                 currentPage="/profile"
                 onLogout={handleLogout}
@@ -152,6 +157,7 @@ function App() {
           element={
             <ProtectedRoute requiredRole="ADMIN">
               <AppLayout
+                user={user}
                 isAdmin={true}
                 currentPage="/admin/dashboard"
                 onLogout={handleLogout}
@@ -166,6 +172,7 @@ function App() {
           element={
             <ProtectedRoute requiredRole="ADMIN">
               <AppLayout
+                user={user}
                 isAdmin={true}
                 currentPage="/admin/events"
                 onLogout={handleLogout}
@@ -180,6 +187,7 @@ function App() {
           element={
             <ProtectedRoute requiredRole="ADMIN">
               <AppLayout
+                user={user}
                 isAdmin={true}
                 currentPage="/admin/events"
                 onLogout={handleLogout}
@@ -194,6 +202,7 @@ function App() {
           element={
             <ProtectedRoute requiredRole="ADMIN">
               <AppLayout
+                user={user}
                 isAdmin={true}
                 currentPage="/admin/registrations"
                 onLogout={handleLogout}
@@ -208,6 +217,7 @@ function App() {
           element={
             <ProtectedRoute requiredRole="ADMIN">
               <AppLayout
+                user={user}
                 isAdmin={true}
                 currentPage="/admin/users"
                 onLogout={handleLogout}

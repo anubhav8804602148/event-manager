@@ -12,6 +12,17 @@ export const eventService = {
     });
   },
 
+  // Get all events for admin with optional status filter - matches API: GET /events/admin/all
+  getAllEventsForAdmin: (page = 0, size = 10, status = null) => {
+    return api.get('/events/admin/all', {
+      params: {
+        page,
+        size,
+        ...(status && { status })
+      }
+    });
+  },
+
   // Get event by ID - matches API: GET /events/{id}
   getEventById: (id) => {
     return api.get(`/events/${id}`);

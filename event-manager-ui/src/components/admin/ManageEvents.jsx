@@ -21,9 +21,7 @@ export const ManageEvents = () => {
   const [deleting, setDeleting] = useState(false);
 
   const { data, loading, refetch } = useFetch(
-    () => eventService.getAllEvents(page, 10, {
-      status: statusFilter || undefined
-    }),
+    () => eventService.getAllEventsForAdmin(page, 10, statusFilter || null),
     [page, statusFilter]
   );
 

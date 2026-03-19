@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { useNotification } from '../../hooks/useNotification';
+import { useAuth } from '../../hooks/useAuth';
 import { eventService } from '../../services/eventService';
+import { registrationService } from '../../services/registrationService';
 import { EVENT_CATEGORIES } from '../../utils/constants';
 import { useDebounce } from '../../hooks/useDebounce';
 import { Card, CardBody } from '../common/Card';
@@ -14,8 +17,12 @@ import './Student.css';
 
 export const BrowseEvents = () => {
   const { success, error: showError } = useNotification();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [page, setPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const [registering, setRegistering] = useState(null);
+  const [registeredEvents, setRegisteredEvents] = useState(new Set());
   const [filters, setFilters] = useState({
     category: '',
     dateRange: '',
@@ -37,9 +44,49 @@ export const BrowseEvents = () => {
     [page, debouncedSearch, filters]
   );
 
+  // Check registration status for all events
+  React.useEffect(() => {
+    if (data?.content && user?.id) {
+      const checkRegistrations = async () => {
+        const registered = new Set();
+        for (const event of data.content) {
+          try {
+            const response = await registrationService.checkIfRegistered(event.id, user.id);
+            // API returns true if registered, false if not (interceptor unwraps the response)
+            if (response?.data === true) {
+              registered.add(event.id);
+            }
+          } catch (err) {
+            // Not registered (API returns error if not registered)
+          }
+        }
+        setRegisteredEvents(registered);
+      };
+      checkRegistrations();
+    }
+  }, [data?.content, user?.id]);
+
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
     setPage(0);
+  };
+
+  const handleRegister = async (eventId) => {
+    if (!user) {
+      showError('Please log in to register for events');
+      return;
+    }
+
+    try {
+      setRegistering(eventId);
+      await registrationService.registerForEvent(eventId);
+      success('Successfully registered for the event!');
+      refetch();
+    } catch (err) {
+      showError(err.response?.data?.message || 'Failed to register for event');
+    } finally {
+      setRegistering(null);
+    }
   };
 
   const handleFilterChange = (e) => {
@@ -138,6 +185,28 @@ export const BrowseEvents = () => {
                       <Button variant="primary" size="small" className="event-btn">
                         View Details
                       </Button>
+
+                      {registeredEvents.has(event.id) ? (
+                        <Button
+                          variant="secondary"
+                          size="small"
+                          className="event-btn"
+                          disabled
+                        >
+                          ✓ Already Registered
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="success"
+                          size="small"
+                          className="event-btn"
+                          onClick={() => handleRegister(event.id)}
+                          loading={registering === event.id}
+                          disabled={event.currentRegistrations >= event.capacity}
+                        >
+                          {event.currentRegistrations >= event.capacity ? 'Event Full' : 'Register'}
+                        </Button>
+                      )}
                     </CardBody>
                   </Card>
                 ))}
