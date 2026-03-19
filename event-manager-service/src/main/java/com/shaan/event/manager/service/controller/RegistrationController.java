@@ -15,7 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/registrations")
+@RequestMapping("/api/registrations")
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173"})
 public class RegistrationController {
     private final RegistrationService registrationService;
