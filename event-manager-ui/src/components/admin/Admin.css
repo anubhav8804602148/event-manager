@@ -1,0 +1,283 @@
+.admin-dashboard {
+  padding: var(--spacing-lg);
+}
+
+.dashboard-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.stat-card {
+  text-align: center;
+  padding: var(--spacing-lg);
+}
+
+.stat-value {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.stat-approved {
+  color: var(--success);
+}
+
+.stat-pending {
+  color: var(--warning);
+}
+
+.stat-label {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+}
+
+.admin-actions {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+  flex-wrap: wrap;
+}
+
+.admin-actions .btn {
+  text-decoration: none;
+}
+
+.recent-events {
+  margin-top: var(--spacing-2xl);
+}
+
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.event-card {
+  cursor: pointer;
+}
+
+.event-status,
+.event-registrations {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-sm) 0;
+}
+
+/* Create Event */
+.create-event {
+  padding: var(--spacing-lg);
+}
+
+.form-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--spacing-lg);
+}
+
+.form-section {
+  background-color: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.preview-section {
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+/* Manage Events */
+.manage-events {
+  padding: var(--spacing-lg);
+}
+
+.manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  gap: var(--spacing-lg);
+}
+
+.manage-filters {
+  margin-bottom: var(--spacing-lg);
+  max-width: 300px;
+}
+
+.events-table-container,
+.users-table-container,
+.registrations-table-container {
+  background-color: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-lg);
+}
+
+.events-table,
+.users-table,
+.registrations-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  background-color: var(--bg-light);
+}
+
+table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-light);
+}
+
+table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-light);
+}
+
+table tbody tr:hover {
+  background-color: var(--bg-light);
+}
+
+.title-cell {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions-cell {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.no-events,
+.no-users,
+.no-registrations {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius-md);
+}
+
+/* Manage Users */
+.manage-users {
+  padding: var(--spacing-lg);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background-color: #E8F5E9;
+  color: var(--success);
+}
+
+.status-badge.inactive {
+  background-color: #FFEBEE;
+  color: var(--danger);
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.user-details p {
+  margin: 0;
+  font-size: var(--font-size-base);
+}
+
+/* Event Registrations */
+.event-registrations {
+  padding: var(--spacing-lg);
+}
+
+.registrations-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-section {
+    position: static;
+  }
+
+  .manage-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .events-table-container,
+  .users-table-container {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+  }
+
+  .admin-actions .btn {
+    width: 100%;
+  }
+
+  .actions-cell {
+    flex-direction: column;
+  }
+
+  .actions-cell button {
+    width: 100%;
+  }
+
+  table {
+    font-size: var(--font-size-sm);
+  }
+
+  table th,
+  table td {
+    padding: var(--spacing-sm);
+  }
+}

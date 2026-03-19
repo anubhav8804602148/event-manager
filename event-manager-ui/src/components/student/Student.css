@@ -1,0 +1,461 @@
+.student-dashboard {
+  padding: var(--spacing-lg);
+}
+
+.dashboard-header {
+  margin-bottom: var(--spacing-2xl);
+  text-align: center;
+}
+
+.dashboard-header h1 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.dashboard-header p {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.stat-card {
+  background-color: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  text-align: center;
+  box-shadow: var(--shadow-1);
+}
+
+.stat-value {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.stat-label {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+  justify-content: center;
+}
+
+.dashboard-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.dashboard-section h2 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.events-list,
+.registrations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.event-card,
+.registration-card {
+  cursor: pointer;
+}
+
+.event-date,
+.event-location,
+.reg-status,
+.reg-date {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: var(--spacing-sm) 0;
+}
+
+.no-data {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--spacing-2xl) 0;
+}
+
+/* Browse Events */
+.browse-events {
+  padding: var(--spacing-lg);
+}
+
+.browse-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.browse-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: var(--spacing-lg);
+}
+
+.browse-sidebar {
+  background-color: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.browse-sidebar h3 {
+  margin-bottom: var(--spacing-md);
+}
+
+.filter-clear {
+  width: 100%;
+  margin-top: var(--spacing-md);
+}
+
+.browse-main {
+  min-height: 500px;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.event-card {
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.event-card:hover {
+  box-shadow: var(--shadow-2);
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.event-header h3 {
+  margin: 0;
+  flex: 1;
+}
+
+.event-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.capacity-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--border-light);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-sm);
+}
+
+.capacity-fill {
+  height: 100%;
+  background-color: var(--success);
+  transition: width var(--transition-base);
+}
+
+.capacity-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.event-btn {
+  width: 100%;
+}
+
+.no-events {
+  text-align: center;
+  padding: var(--spacing-3xl);
+}
+
+/* Event Details */
+.event-details {
+  padding: var(--spacing-lg);
+}
+
+.event-hero {
+  width: 100%;
+  height: 400px;
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+}
+
+.event-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.event-title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.event-title-section h1 {
+  margin: 0;
+}
+
+.event-category {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.event-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  background-color: var(--bg-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.detail-value {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.event-description-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.capacity-card {
+  margin-bottom: var(--spacing-lg);
+}
+
+.capacity-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.registration-deadline {
+  font-size: var(--font-size-sm);
+  color: var(--warning);
+  font-weight: 500;
+}
+
+.event-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius-md);
+}
+
+.event-actions button {
+  flex: 1;
+}
+
+/* My Registrations */
+.my-registrations {
+  padding: var(--spacing-lg);
+}
+
+.registrations-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.registrations-filter {
+  margin-bottom: var(--spacing-lg);
+  max-width: 300px;
+}
+
+.registrations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.reg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.reg-header h3 {
+  margin: 0;
+  flex: 1;
+}
+
+.reg-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-sm);
+}
+
+.label {
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.reg-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.reg-actions button {
+  flex: 1;
+}
+
+.no-registrations {
+  text-align: center;
+  padding: var(--spacing-3xl);
+}
+
+/* Profile */
+.profile {
+  padding: var(--spacing-lg);
+}
+
+.profile-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.profile-tabs {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--border-light);
+}
+
+.tab-button {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.tab-button.active {
+  border-bottom-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.profile-card {
+  max-width: 600px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.form-actions button {
+  min-width: 150px;
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+  .browse-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .browse-sidebar {
+    position: static;
+  }
+
+  .registrations-list,
+  .events-list,
+  .events-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+  }
+
+  .profile-tabs {
+    overflow-x: auto;
+  }
+
+  .event-title-section {
+    flex-direction: column;
+  }
+
+  .event-actions {
+    flex-direction: column;
+  }
+
+  .registrations-list {
+    grid-template-columns: 1fr;
+  }
+}
